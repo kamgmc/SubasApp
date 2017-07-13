@@ -1,6 +1,7 @@
 package com.subasta.kamgmc.subasapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -48,7 +49,7 @@ public class SubastaActivity extends AppCompatActivity {
         gallery = (ViewPager) findViewById(R.id.gallery);
         GalleryAdapter adapter = new GalleryAdapter(this);
 
-        adapter.setImages(subasta.getImage());
+        adapter.setImages(subasta.getImages());
         gallery.setAdapter(adapter);
 
         getSupportActionBar().setTitle(subasta.getTitle());

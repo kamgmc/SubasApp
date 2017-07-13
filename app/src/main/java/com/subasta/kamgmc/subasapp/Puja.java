@@ -6,7 +6,6 @@ public class Puja extends RealmObject {
     double monto;
 
     public Puja() {
-
     }
 
     public Puja(float monto) {

@@ -47,7 +47,7 @@ public class SubastaAdapter extends ArrayAdapter<Subasta>{
         Subasta subasta = myData.get(position);
         holder.title.setText(subasta.getTitle());
         holder.description.setText(subasta.getDescription());
-        holder.image.setImageResource(subasta.getImage());
+        holder.image.setImageBitmap(subasta.getImages().get(0).getBitmap());
         String monto = subasta.mejorPuja().getMonto() + " Bs";
         holder.monto.setText(monto);
 

@@ -62,7 +62,7 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
                             tag = "AccountTag";
                             break;
                         case R.id.navigation_account:
-                            selectedFragment = AccountFragment.newInstance();
+                            selectedFragment = LoginFragment.newInstance();
                             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_account).setEnabled(false);

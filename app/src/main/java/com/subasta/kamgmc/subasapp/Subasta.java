@@ -1,5 +1,9 @@
 package com.subasta.kamgmc.subasapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 
 import io.realm.RealmList;
@@ -9,16 +13,17 @@ public class Subasta extends RealmObject implements Serializable{
     private String title;
     private String description;
     private RealmList<Puja> pujas;
+    private RealmList<RealmBitmap> images;
     private double pujaMinima;
-    private int image;
     private int id;
 
     public Subasta(){
         //Empty Constructor
     }
-    public Subasta(int img, String title, String description){
+    public Subasta(RealmList<RealmBitmap> imgs, String title, String description){
         super();
-        this.image = img;
+
+        this.images = imgs;
         this.description = description;
         this.title = title;
     }
@@ -39,12 +44,14 @@ public class Subasta extends RealmObject implements Serializable{
         this.description = description;
     }
 
-    public int getImage() {
-        return image;
+    public RealmList<RealmBitmap> getImages() {
+
+        return this.images;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImages(RealmList<RealmBitmap> imgs) {
+
+        this.images = imgs;
     }
 
     public int getId() {

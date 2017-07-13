@@ -1,6 +1,7 @@
 package com.subasta.kamgmc.subasapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -8,13 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import io.realm.RealmList;
+
 public class GalleryAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    private int images = R.drawable.wolf;
+    private RealmList<RealmBitmap> images;
 
-    public void setImages(int images) {
+    public void setImages(RealmList<RealmBitmap> images) {
         this.images = images;
     }
 
@@ -24,7 +27,7 @@ public class GalleryAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 1;
+        return this.images.size();
     }
 
     @Override
@@ -37,7 +40,7 @@ public class GalleryAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.subasta_gallery_item,null);
         ImageView image = (ImageView) view.findViewById(R.id.gallery_image);
-        image.setImageResource(images);
+        image.setImageBitmap(this.images.get(position).getBitmap());
 
         ViewPager viewPager = (ViewPager) container;
         viewPager.addView(view,0);
