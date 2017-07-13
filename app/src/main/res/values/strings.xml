@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Subasta</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_account">Account</string>
+    <string name="search_hint">Search…</string>
+    <string name="search_label">Search</string>
+
+</resources>
