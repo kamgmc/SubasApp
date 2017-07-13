@@ -12,8 +12,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_login"
         android:icon="@drawable/ic_account_circle"
-        android:title="@string/title_account" />
+        android:title="@string/title_login" />
+
+    <item
+        android:id="@+id/navigation_info"
+        android:icon="@drawable/ic_info"
+        android:title="@string/title_info" />
 
 </menu>

@@ -1,7 +1,8 @@
 package com.subasta.kamgmc.subasapp;
 
 import android.app.Application;
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 
 import io.realm.Realm;
@@ -64,9 +65,30 @@ public class MyApplication extends Application {
                 subasta1.setId(125648);
                 subasta1.setPujaMinima(180);
                 subasta1.setDescription("Wallpaper de un lobo solitario");
+
+                subastas.add(subasta1);
+
+               /* Martillero martillero = realm.createObject(Martillero.class);
+                martillero.setNombre("Carlos Alonzo");
+                martillero.setEmail("calonzo@gmail.com");
+                martillero.setPassword("21232f297a57a5a743894a0e4a801fc3");
+                martillero.setPujas(pujas);
+                martillero.setSubastasMartillero(subastas);*/
+
                 realm.close();
             }
         }).name("RealmDB").build();
         Realm.setDefaultConfiguration(configuration);
+
+        SharedPreferences prefs = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+            if(prefs.getBoolean("inicial",true)){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("nombre", "");
+                editor.putString("email", "");
+                editor.putString("password", "");
+                editor.putBoolean("logged",false);
+                editor.putBoolean("inicial",false);
+                editor.apply();
+            }
     }
 }

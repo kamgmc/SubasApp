@@ -16,15 +16,17 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class Main extends AppCompatActivity implements SearchView.OnQueryTextListener {
-    Toolbar toolbar;
-    SearchView searchView;
-    BottomNavigationView navigation;
+    private Toolbar toolbar;
+    private SearchView searchView;
+    private BottomNavigationView navigation;
+    private Sesion sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sesion = new Sesion(this);
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -38,6 +40,8 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, HomeFragment.newInstance(),"HomeTag");
         transaction.commit();
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
@@ -51,26 +55,30 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
                             selectedFragment = HomeFragment.newInstance();
                             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(false);
                             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
-                            navigation.getMenu().findItem(R.id.navigation_account).setEnabled(true);
+                            navigation.getMenu().findItem(R.id.navigation_login).setEnabled(true);
                             tag = "HomeTag";
                             break;
                         case R.id.navigation_dashboard:
                             selectedFragment = AccountFragment.newInstance();
                             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(false);
-                            navigation.getMenu().findItem(R.id.navigation_account).setEnabled(true);
+                            navigation.getMenu().findItem(R.id.navigation_login).setEnabled(true);
                             tag = "AccountTag";
                             break;
-                        case R.id.navigation_account:
-                            selectedFragment = LoginFragment.newInstance();
+                        case R.id.navigation_login:
                             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
-                            navigation.getMenu().findItem(R.id.navigation_account).setEnabled(false);
+                            navigation.getMenu().findItem(R.id.navigation_login).setEnabled(false);
                             searchView.setVisibility(View.GONE);
-                            tag = "AccountTag";
+                            if(sesion.isLogged())
+                                selectedFragment = AccountFragment.newInstance();
+                            else
+                                selectedFragment = LoginFragment.newInstance();
+                            tag = "LoginTag";
                             break;
-                        case android.R.id.home:
+                        case R.id.navigation_info:
                             break;
+
                     }
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment,tag);
@@ -117,7 +125,7 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
             navigation.setSelectedItemId(R.id.navigation_home);
             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(false);
             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
-            navigation.getMenu().findItem(R.id.navigation_account).setEnabled(true);
+            navigation.getMenu().findItem(R.id.navigation_login).setEnabled(true);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame_layout, HomeFragment.newInstance());
             transaction.commit();
