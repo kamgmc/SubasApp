@@ -22,7 +22,6 @@ public class Subasta extends RealmObject implements Serializable{
     }
     public Subasta(RealmList<RealmBitmap> imgs, String title, String description){
         super();
-
         this.images = imgs;
         this.description = description;
         this.title = title;
