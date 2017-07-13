@@ -104,7 +104,6 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
         return true;
     }
 
-
     @Override
     public void onBackPressed() {
 
