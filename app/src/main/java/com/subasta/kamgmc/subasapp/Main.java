@@ -14,12 +14,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class Main extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private Toolbar toolbar;
     private SearchView searchView;
     private BottomNavigationView navigation;
     private Sesion sesion;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setItemBackgroundResource(R.color.colorPrimary);
+        menu = navigation.getMenu();
 
         toolbar = (Toolbar)findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -53,30 +56,43 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
                             selectedFragment = HomeFragment.newInstance();
-                            navigation.getMenu().findItem(R.id.navigation_home).setEnabled(false);
+                            item.setEnabled(false);
+                            navigation.getMenu().findItem(R.id.navigation_info).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_login).setEnabled(true);
                             tag = "HomeTag";
                             break;
                         case R.id.navigation_dashboard:
                             selectedFragment = AccountFragment.newInstance();
+                            item.setEnabled(false);
                             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(true);
-                            navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(false);
+                            navigation.getMenu().findItem(R.id.navigation_info).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_login).setEnabled(true);
                             tag = "AccountTag";
                             break;
                         case R.id.navigation_login:
+                            item.setEnabled(false);
                             navigation.getMenu().findItem(R.id.navigation_home).setEnabled(true);
                             navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
-                            navigation.getMenu().findItem(R.id.navigation_login).setEnabled(false);
+                            navigation.getMenu().findItem(R.id.navigation_info).setEnabled(true);
                             searchView.setVisibility(View.GONE);
-                            if(sesion.isLogged())
+                            if(sesion.isLogged()) {
                                 selectedFragment = AccountFragment.newInstance();
-                            else
+                                menu.findItem(R.id.navigation_login).setTitle("Cuenta");
+                                tag = "AccountTag";
+                            }
+                            else {
                                 selectedFragment = LoginFragment.newInstance();
-                            tag = "LoginTag";
+                                menu.findItem(R.id.navigation_login).setTitle("Login");
+                                tag = "LoginTag";
+                            }
                             break;
                         case R.id.navigation_info:
+                            selectedFragment = InfoFragment.newInstance();
+                            item.setEnabled(false);
+                            navigation.getMenu().findItem(R.id.navigation_home).setEnabled(true);
+                            navigation.getMenu().findItem(R.id.navigation_dashboard).setEnabled(true);
+                            navigation.getMenu().findItem(R.id.navigation_login).setEnabled(true);
                             break;
 
                     }
@@ -103,7 +119,12 @@ public class Main extends AppCompatActivity implements SearchView.OnQueryTextLis
     @Override
     public boolean onQueryTextSubmit(String query) {
 
-        return false;
+        HomeFragment homeFragment = HomeFragment.newInstance();
+        homeFragment.setSearch(query);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout,homeFragment,"HomeTag");
+        transaction.commit();
+        return true;
     }
 
     @Override

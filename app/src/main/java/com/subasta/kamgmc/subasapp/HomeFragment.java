@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -17,6 +18,8 @@ public class HomeFragment extends Fragment {
     private View view;
     private ListView listSubasta;
     private Realm myRealm;
+    private RealmResults<Subasta> subastas;
+    private String search;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -47,7 +50,10 @@ public class HomeFragment extends Fragment {
         }
 
         myRealm = Realm.getDefaultInstance();
-        RealmResults<Subasta> subastas = myRealm.where(Subasta.class).findAll();
+        if(search == null)
+            subastas = myRealm.where(Subasta.class).findAll();
+        else
+            subastas = myRealm.where(Subasta.class).beginsWith("title",search,Case.INSENSITIVE).findAll();
 
         SubastaAdapter adapter = new SubastaAdapter(getActivity(),R.layout.subasta_list_row,subastas);
 
@@ -77,5 +83,9 @@ public class HomeFragment extends Fragment {
             listSubasta = (ListView) view.findViewById(R.id.list_subasta);
             listSubasta.setAdapter(adapter);
         }
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 }
