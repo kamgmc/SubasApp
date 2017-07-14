@@ -3,6 +3,7 @@ package com.subasta.kamgmc.subasapp;
 import android.graphics.drawable.Drawable;
 import android.media.MediaCodec;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -30,9 +31,9 @@ public class LoginFragment extends Fragment {
     private EditText email;
     private EditText password;
     private Button login;
-    private TextView sign;
     private Sesion sesion;
     private SearchView search;
+    private BottomNavigationView navigation;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -69,7 +70,6 @@ public class LoginFragment extends Fragment {
         email = (EditText) view.findViewById(R.id.email);
         password = (EditText) view.findViewById(R.id.password);
         login = (Button) view.findViewById(R.id.btnLogin);
-        sign = (TextView) view.findViewById(R.id.sign);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +97,9 @@ public class LoginFragment extends Fragment {
                             sesion.iniciar(view.getContext(),usuario);
                             Toast.makeText(getContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
                             AccountFragment nextFragment= new AccountFragment();
-                            getFragmentManager().beginTransaction()
-                                    .replace(R.id.frame_layout, nextFragment,"AccountTag")
-                                    .addToBackStack(null)
-                                    .commit();
+                            getFragmentManager().beginTransaction().replace(R.id.frame_layout, nextFragment,"AccountTag").addToBackStack(null).commit();
+                            //navigation = (BottomNavigationView) view.findViewById(R.id.navigation);
+                            //navigation.getMenu().findItem(R.id.navigation_login).setTitle("Cuenta");
                         }
                         else
                             Toast.makeText(getContext(), "Email y/o contraseña incorrecta", Toast.LENGTH_LONG).show();

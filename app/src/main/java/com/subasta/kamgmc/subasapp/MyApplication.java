@@ -68,12 +68,13 @@ public class MyApplication extends Application {
 
                 subastas.add(subasta1);
 
-               /* Martillero martillero = realm.createObject(Martillero.class);
+                Usuario martillero = realm.createObject(Usuario.class);
                 martillero.setNombre("Carlos Alonzo");
                 martillero.setEmail("calonzo@gmail.com");
+                martillero.setMartillero(true);
                 martillero.setPassword("21232f297a57a5a743894a0e4a801fc3");
                 martillero.setPujas(pujas);
-                martillero.setSubastasMartillero(subastas);*/
+                martillero.setSubastasMartillero(subastas);
 
                 realm.close();
             }

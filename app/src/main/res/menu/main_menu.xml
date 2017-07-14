@@ -9,19 +9,4 @@
         android:title="Search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
-    <item
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="Borrar"
-        app:showAsAction="never"
-        android:id="@+id/borrar"/>
-    <item
-        android:icon="@android:drawable/ic_menu_save"
-        android:title="Guardar"
-        app:showAsAction="never"
-        android:id="@+id/guardar"/>
-    <item
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="chao"
-        app:showAsAction="never"
-        android:id="@+id/bye"/>
 </menu>

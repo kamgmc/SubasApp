@@ -1,15 +1,20 @@
 package com.subasta.kamgmc.subasapp;
 
+import android.graphics.Bitmap;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class Usuario extends RealmObject{
 
+    private boolean martillero;
     private String nombre;
     private String email;
     private String password;
+    private RealmBitmap image;
     private RealmList<Puja> pujas;
     private RealmList<Subasta> subastas;
+    private RealmList<Subasta> subastasMartillero;
 
     public String getNombre() {
         return nombre;
@@ -49,5 +54,29 @@ public class Usuario extends RealmObject{
 
     public void setSubastas(RealmList<Subasta> subastas) {
         this.subastas = subastas;
+    }
+
+    public RealmList<Subasta> getSubastasMartillero() {
+        return subastasMartillero;
+    }
+
+    public void setSubastasMartillero(RealmList<Subasta> subastasMartillero) {
+        this.subastasMartillero = subastasMartillero;
+    }
+
+    public boolean isMartillero(){
+        return martillero;
+    }
+
+    public void setMartillero(boolean isMartillero){
+        this.martillero = isMartillero;
+    }
+
+    public Bitmap getImage(){
+        return this.image.getBitmap();
+    }
+
+    public void setImage(Bitmap image){
+        this.image.setBitmap(image);
     }
 }

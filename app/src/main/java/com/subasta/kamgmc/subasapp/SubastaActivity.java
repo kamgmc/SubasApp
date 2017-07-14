@@ -24,11 +24,13 @@ public class SubastaActivity extends AppCompatActivity {
     private TextView pujas;
     private Button button;
     private Subasta subasta;
+    private Sesion sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subasta);
+        sesion = new Sesion(this);
 
         myRealm = Realm.getDefaultInstance();
         title = (TextView) findViewById(R.id.title);
