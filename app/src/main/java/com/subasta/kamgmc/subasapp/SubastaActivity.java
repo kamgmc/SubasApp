@@ -70,6 +70,9 @@ public class SubastaActivity extends AppCompatActivity {
             }
         });
 
+        if(!sesion.isLogged())
+            button.setVisibility(View.GONE);
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

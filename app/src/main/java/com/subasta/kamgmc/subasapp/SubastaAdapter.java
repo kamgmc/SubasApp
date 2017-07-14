@@ -10,12 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class SubastaAdapter extends ArrayAdapter<Subasta>{
     private Context myContext;
     private int myLayoutResourceID;
     private RealmResults<Subasta>  myData = null;
+    private RealmList<Subasta> listData = null;
 
     public SubastaAdapter(Context context,int layoutResourceID, RealmResults<Subasta> data){
         super(context,layoutResourceID,data);
@@ -23,6 +25,14 @@ public class SubastaAdapter extends ArrayAdapter<Subasta>{
         this.myContext = context;
         this.myLayoutResourceID = layoutResourceID;
         this.myData = data;
+    }
+
+    public SubastaAdapter(Context context,int layoutResourceID, RealmList<Subasta> data){
+        super(context,layoutResourceID,data);
+
+        this.myContext = context;
+        this.myLayoutResourceID = layoutResourceID;
+        this.listData = data;
     }
     @NonNull
     public View getView(int position,View convertView, ViewGroup parent){
@@ -44,12 +54,17 @@ public class SubastaAdapter extends ArrayAdapter<Subasta>{
             holder = (SubastaHolder)row.getTag();
         }
 
-        Subasta subasta = myData.get(position);
-        holder.title.setText(subasta.getTitle());
-        holder.description.setText(subasta.getDescription());
-        holder.image.setImageBitmap(subasta.getImages().get(0).getBitmap());
-        String monto = subasta.mejorPuja().getMonto() + " Bs";
-        holder.monto.setText(monto);
+        Subasta subasta;
+        if(myData!=null)
+            subasta = myData.get(position);
+        else
+            subasta = listData.get(position);
+
+            holder.title.setText(subasta.getTitle());
+            holder.description.setText(subasta.getDescription());
+            holder.image.setImageBitmap(subasta.getImages().get(0).getBitmap());
+            String monto = subasta.mejorPuja().getMonto() + " Bs";
+            holder.monto.setText(monto);
 
         return row;
     }

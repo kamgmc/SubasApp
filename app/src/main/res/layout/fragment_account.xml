@@ -72,7 +72,7 @@
 
 
     <ListView
-        android:id="@+id/list_mi_subasta"
+        android:id="@+id/list_mis_subasta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linear_btns"
