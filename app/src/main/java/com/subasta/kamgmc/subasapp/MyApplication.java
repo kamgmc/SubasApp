@@ -31,6 +31,9 @@ public class MyApplication extends Application {
                 RealmBitmap image = realm.createObject(RealmBitmap.class);
                 image.setBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.fuerte));
 
+                RealmBitmap perfil = realm.createObject(RealmBitmap.class);
+                perfil.setBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.dog));
+
                 RealmBitmap image1 = realm.createObject(RealmBitmap.class);
                 image1.setBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.wolf));
 
@@ -51,6 +54,7 @@ public class MyApplication extends Application {
                 Usuario usuario = realm.createObject(Usuario.class);
                 usuario.setNombre("Kevin Martinez");
                 usuario.setEmail("kamgmc@gmail.com");
+                usuario.setImage(perfil);
                 usuario.setPassword("6bf45147ae4dacfc78cd5e99aef8d4fe");
                 usuario.setPujas(pujas);
                 usuario.setSubastas(subastas);

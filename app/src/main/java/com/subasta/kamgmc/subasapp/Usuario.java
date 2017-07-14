@@ -76,7 +76,7 @@ public class Usuario extends RealmObject{
         return this.image.getBitmap();
     }
 
-    public void setImage(Bitmap image){
-        this.image.setBitmap(image);
+    public void setImage(RealmBitmap image){
+        this.image = image;
     }
 }

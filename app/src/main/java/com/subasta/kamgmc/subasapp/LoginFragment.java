@@ -96,7 +96,7 @@ public class LoginFragment extends Fragment {
                         if(usuario.getPassword().equals(pass)){
                             sesion.iniciar(view.getContext(),usuario);
                             Toast.makeText(getContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
-                            AccountFragment nextFragment= new AccountFragment();
+                            AccountFragment nextFragment = new AccountFragment();
                             getFragmentManager().beginTransaction().replace(R.id.frame_layout, nextFragment,"AccountTag").addToBackStack(null).commit();
                             //navigation = (BottomNavigationView) view.findViewById(R.id.navigation);
                             //navigation.getMenu().findItem(R.id.navigation_login).setTitle("Cuenta");

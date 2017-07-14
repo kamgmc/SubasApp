@@ -1,6 +1,5 @@
 package com.subasta.kamgmc.subasapp;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import io.realm.Realm;
