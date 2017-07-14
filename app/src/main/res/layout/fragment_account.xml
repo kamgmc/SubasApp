@@ -72,11 +72,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnSubasta" />
 
-    <!--<ImageView-->
-        <!--android:id="@+id/truiton_image"-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="300dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--app:srcCompat="@drawable/ic_account_circle"/>-->
 
 </RelativeLayout>
