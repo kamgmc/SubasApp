@@ -49,7 +49,7 @@
         android:id="@+id/btnSubasta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subastas"
+        android:text="Subasta"
         android:textAllCaps="false"
         android:layout_toRightOf="@+id/btnPujas"
         android:layout_toEndOf="@+id/btnPujas"
