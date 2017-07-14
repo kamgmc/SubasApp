@@ -53,24 +53,28 @@
         android:textAllCaps="false"
         android:layout_toRightOf="@+id/btnPujas"
         android:layout_toEndOf="@+id/btnPujas"
-        android:layout_marginTop="130dp" />
+        android:layout_marginTop="140dp" />
     <Button
         android:id="@+id/btnPujas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="140dp"
         android:text="Pujas"
         android:textAllCaps="false"
         android:layout_alignRight="@+id/perfil_email"
         android:layout_alignEnd="@+id/perfil_email"
         android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        />
 
     <ListView
         android:id="@+id/list_mi_subasta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSubasta" />
+        android:layout_below="@+id/btnSubasta"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
 
 
 </RelativeLayout>
